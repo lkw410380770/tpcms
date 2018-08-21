@@ -1,0 +1,46 @@
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item {if condition="$con eq 'Conf'"}layui-nav-itemed{/if}">
+                <a class="" href="javascript:;">系统配置</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('Conf/conflst')}">系统基本参数</a></dd>
+                    <dd><a href="{:url('Conf/lst')}">配置管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {if condition="$con eq 'Cate'"}layui-nav-itemed{/if}">
+                <a href="javascript:;">网站管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('Cate/index')}">栏目管理</a></dd>
+                    <dd><a href="{:url('Content/lst')}">文章管理</a></dd>
+                    <dd><a href="javascript:;">超链接</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {if condition="$con eq 'Cate'"}layui-nav-itemed{/if}">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('goodsBrand/lst')}">品牌管理</a></dd>
+                    <dd><a href="{:url('GoodsCate/lst')}">商品分类管理</a></dd>
+                    <dd><a href="{:url('Content/lst')}">商品列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {if condition="$con eq 'Model'"}layui-nav-itemed{/if}">
+                <a href="javascript:;">模型管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('Model/index')}">模型列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {if condition="$con eq 'Admin'"}layui-nav-itemed{/if}">
+                <a href="javascript:;">管理员</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('Admin/lst')}">管理员列表</a></dd>
+                    <dd><a href="{:url('AuthRule/lst')}">权限管理</a></dd>
+                    <dd><a href="{:url('AuthGroup/lst')}">用户组管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">云市场</a></li>
+            <li class="layui-nav-item"><a href="">发布商品</a></li>
+        </ul>
+    </div>
+</div>

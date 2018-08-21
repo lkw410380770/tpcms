@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        {include file="common/head" /}
+        {include file="common/left" /}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;">
+                <div class="layui-btn-group">
+                    <a href="{:url('add')}" class="layui-btn">添加模型</a>
+                </div>
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'id'}">ID</th>
+                            <th>模型名称</th>
+                            <th>表名</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="data" id="vo"}
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.model_name}</td>
+                            <td>{$vo.table_name}</td>
+                            <td>
+                                <form class="layui-form" action="">
+                                     <div class="layui-form-item">
+                                        <div class="layui-input-block" style="margin-left:0;">
+                                          <input type="checkbox" data-id="{$vo.id}" lay-text="ON|OFF
+                                          " lay-filter="switchBtn" name="status" lay-skin="switch" {if condition="$vo.status eq 1"}checked{/if}>
+                                        </div>
+                                      </div>
+                                </form>
+                            </td>
+                            <td>
+                                <div class="layui-btn-group">
+                                    <a class="layui-btn layui-btn-normal" href="{:url('edit',['id'=>$vo['id']])}">编辑</a>
+                                    <a class="layui-btn" href="{:url('ModelFields/index',['id'=>$vo['id']])}">字段管理</a>
+                                    <a class="layui-btn layui-btn-danger btn-dele" data-href="{:url('dele',['id'=>$vo['id']])}">删除</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="__ADMIN__/layui/layui.js"></script>
+    <script>
+    //JavaScript代码区域
+    layui.use(['element','layer','jquery','form'], function() {
+        var element = layui.element;
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var form = layui.form;
+        form.on('switch(switchBtn)', function(data){
+            var idnum = data.elem.getAttribute('data-id');
+            if(data.elem.checked){
+               $.ajax({
+                type:'post',
+                url:'{:url('ajaxUpdateStatus')}',
+                dataType:'json',
+                data:{
+                    status:1,
+                    id:idnum
+                },
+                success:function(res){
+                    if(res.code == 1){
+                        return layer.msg('修改成功');
+                    }else{
+                         return layer.msg('修改失败');
+                    }
+                    
+                },
+                error:function(){
+                    return layer.msg('修改失败');
+                }
+               })
+            }else{
+                $.ajax({
+                type:'post',
+                url:'{:url('ajaxUpdateStatus')}',
+                dataType:'json',
+                data:{
+                    status:0,
+                    id:idnum
+                },
+                success:function(res){
+                    if(res.code == 1){
+                        return layer.msg('修改成功');
+                    }else{
+                         return layer.msg('修改失败');
+                    }
+                    
+                },
+                error:function(){
+                    return layer.msg('修改失败');
+                }
+               })
+            }
+        
+        });
+        $('.btn-dele').on('click',function(){
+            var urlstr = $(this).attr('data-href');
+            var self = $(this);
+            layer.confirm('确定要删除吗?', {icon: 3, title:'提示'}, function(index){
+                $.ajax({
+                    url:urlstr,
+                    type:'get',
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status == 1){
+                            layer.msg('删除成功');
+                            self.parents('tr').remove();
+                        }
+                    },
+                    error:function(){
+
+                    }
+                })
+              // layer.close(index);
+            });
+        })
+
+    });
+    </script>
+</body>
+
+</html>

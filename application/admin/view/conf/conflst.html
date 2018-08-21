@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        {include file="common/head" /} {include file="common/left" /}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <form class="layui-form" action="" method="post" enctype="multipart/form-data">
+            <div style="padding: 15px;">
+                <div class="layui-tab layui-tab-card">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">基本信息</li>
+                        <li>联系方式</li>
+                        <li>SE0</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                                <?php foreach($confRes as $v):?>
+                                    <?php if($v['cf_type']==1):?>
+                                        <?php if($v['dt_type'] == 1):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <input type="text" value="<?php echo $v['value'];?>" name="<?php echo $v['ename'];?>" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 2):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <textarea name="<?php echo $v['ename'];?>" placeholder="请输入内容" class="layui-textarea"><?php echo $v['value'];?></textarea>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 3):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                 <div class="layui-input-block">
+                                                    <?php foreach($valuesArr as $k1=>$v1):?>
+                                                      <input type="radio" name="<?php echo $v['ename'];?>" value="<?php echo $v1;?>" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                    <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 4):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <?php foreach($valuesArr as $k1=>$v1):?>
+                                                  <input type="checkbox" name="<?php echo $v['ename'];?>[]" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                  <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 5):
+                                                 $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                      <select name="<?php echo $v['ename'];?>">
+                                                        <?php foreach($valuesArr as $k1=>$v1):?>
+                                                        <option value="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}selected{/if}><?php echo $v1;?></option>
+                                                         <?php endforeach;?>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 6):?>
+                                            <div class="layui-form-item">
+
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                    <div class="layui-upload">
+                                                    	<input type="hidden" value="<?php echo $v['value'];?>" name="<?php echo $v['ename'];?>" class="logo">
+														  <button type="button" class="layui-btn" id="test1">选择图片</button>
+														  <button type="button" class="layui-btn" id="uploadLogo">上传图片</button>
+														  <div class="layui-upload-list">
+														    <img class="layui-upload-img" width="180" src="/public/<?php echo $v['value'];?>" id="demo1">
+														    <p id="demoText"></p>
+														  </div>
+														</div> 
+                                                </div>
+                                            </div>
+                                        <?php endif;?>
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                        </div>
+                         <div class="layui-tab-item">
+                                <?php foreach($confRes as $v):?>
+                                    <?php if($v['cf_type']==2):?>
+                                        <?php if($v['dt_type'] == 1):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <input type="text" value="<?php echo $v['value'];?>" name="<?php echo $v['ename'];?>" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 2):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <textarea name="<?php echo $v['ename'];?>" placeholder="请输入内容" class="layui-textarea"><?php echo $v['value'];?></textarea>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 3):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                 <div class="layui-input-block">
+                                                    <?php foreach($valuesArr as $k1=>$v1):?>
+                                                      <input type="radio" name="<?php echo $v['ename'];?>" value="<?php echo $v1;?>" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                    <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 4):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <?php foreach($valuesArr as $k1=>$v1):?>
+                                                  <input type="checkbox" name="<?php echo $v['ename'];?>[]" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                  <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 5):
+                                                 $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                      <select name="<?php echo $v['ename'];?>">
+                                                        <?php foreach($valuesArr as $k1=>$v1):?>
+                                                        <option value="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}selected{/if}><?php echo $v1;?></option>
+                                                         <?php endforeach;?>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 6):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                      <select name="city">
+                                                        <option value=""></option>
+                                                        <option value="0">北京</option>
+                                                        <option value="1">上海</option>
+                                                        <option value="2">广州</option>
+                                                        <option value="3">深圳</option>
+                                                        <option value="4">杭州</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                        <?php endif;?>
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                        </div>
+                         <div class="layui-tab-item">
+                                <?php foreach($confRes as $v):?>
+                                    <?php if($v['cf_type']==3):?>
+                                        <?php if($v['dt_type'] == 1):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <input type="text" value="<?php echo $v['value'];?>" name="<?php echo $v['ename'];?>" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 2):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <textarea name="<?php echo $v['ename'];?>" placeholder="请输入内容" class="layui-textarea"><?php echo $v['value'];?></textarea>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 3):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                 <div class="layui-input-block">
+                                                    <?php foreach($valuesArr as $k1=>$v1):?>
+                                                      <input type="radio" name="<?php echo $v['ename'];?>" value="<?php echo $v1;?>" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                    <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 4):
+                                                $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                  <?php foreach($valuesArr as $k1=>$v1):?>
+                                                  <input type="checkbox" name="<?php echo $v['ename'];?>[]" title="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}checked{/if}>
+                                                  <?php endforeach;?>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 5):
+                                                 $valuesArr = explode(',',$v['values']);
+                                            ?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                      <select name="<?php echo $v['ename'];?>">
+                                                        <?php foreach($valuesArr as $k1=>$v1):?>
+                                                        <option value="<?php echo $v1;?>" {if condition="$v1 eq $v['value']"}selected{/if}><?php echo $v1;?></option>
+                                                         <?php endforeach;?>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <?php endif;?>
+                                            <?php if($v['dt_type'] == 6):?>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label"><?php echo $v['cname'];?></label>
+                                                <div class="layui-input-block">
+                                                      <select name="city">
+                                                        <option value=""></option>
+                                                        <option value="0">北京</option>
+                                                        <option value="1">上海</option>
+                                                        <option value="2">广州</option>
+                                                        <option value="3">深圳</option>
+                                                        <option value="4">杭州</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                        <?php endif;?>
+                                    <?php endif;?>
+                                <?php endforeach;?>
+                        </div>
+
+                    </div>
+                </div>
+                 <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            </div>
+
+        </form>
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="__ADMIN__/layui/layui.js"></script>
+    <script>
+    //JavaScript代码区域
+    layui.use(['element','form','upload','jquery'], function() {
+        var element = layui.element;
+        var form = layui.form;
+        var upload = layui.upload;
+        var $ = layui.jquery;
+        //多文件列表示例
+  		var uploadInst = upload.render({
+		    elem: '#test1'
+		    ,url: '{:url('Conf/ajaxUploadImg')}'
+		    ,auto:false
+		    ,accept: 'file'
+    		,multiple: true
+    		,field:'image'
+		    ,bindAction:'#uploadLogo'
+		    ,choose: function(obj){
+		      //预读本地文件示例，不支持ie8
+		      obj.preview(function(index, file, result){
+		        $('#demo1').attr('src', result); //图片链接（base64）
+		      });
+		    }
+		    ,done: function(res){
+		      //如果上传失败
+		      if(res.code == 0){
+		        return layer.msg('上传失败');
+		      }else if(res.code == 1){
+		      	 console.log(res);
+		      	 $('.logo').val(res.path);
+		      	 return layer.msg('上传成功');
+		      }
+		      //上传成功
+		    }
+		    ,error: function(){
+		      //演示失败状态，并实现重传
+		      var demoText = $('#demoText');
+		      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+		      demoText.find('.demo-reload').on('click', function(){
+		        uploadInst.upload();
+		      });
+		    }
+		  });
+    });
+    </script>
+</body>
+
+</html>

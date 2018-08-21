@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        {include file="common/head" /}
+        {include file="common/left" /}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;">
+                <form class="layui-form" action="" method="post">
+                    <input type="hidden" name='id' value="{$data.id}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">模型名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="model_name" value="{$data.model_name}" required lay-verify="required" placeholder="模型名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">附加表名</label>
+                        <div class="layui-input-block"> 
+                            <input type="text" name="table_name" value="{$data.table_name}" disabled required lay-verify="required" placeholder="附加表名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态</label>
+                        <div class="layui-input-block">
+                          <input type="radio" name="status" value="1" title="开" {if condition="$data['status'] eq 1"}checked{/if}>
+                          <input type="radio" name="status" value="0" title="关" {if condition="$data['status'] eq 0"}checked{/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                          <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="__ADMIN__/layui/layui.js"></script>
+    <script>
+    //JavaScript代码区域
+    layui.use(['element','form'], function() {
+        var element = layui.element;
+        var form = layui.form;
+    });
+    </script>
+</body>
+
+</html>

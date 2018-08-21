@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        {include file="common/head" /} {include file="common/left" /}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div style="padding: 15px;">
+                <form class="layui-form" action="" method="post">
+                    <input type="hidden" name="id" value="{$authGroups.id}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户组名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" value="{$authGroups.title}" disabled required lay-verify="required" placeholder="规则名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    {foreach name="ruleData" item="vo1"}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{$vo1.title}</label>
+                        <div class="layui-input-block">
+                          <input type="checkbox" name="rules[]" {in name="$vo1.id" value="$rules"}checked{/in} value="{$vo1.id}">
+                          {foreach name="vo1['children']" item="vo2"}
+                           <input type="checkbox" name="rules[]" value="{$vo2.id}" class="primary" {in name="$vo2.id" value="$rules"}checked{/in} title="{$vo2.title}">
+                          {/foreach}
+                        </div>
+                    </div>
+                    {/foreach}
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
+    </div>
+    <script src="__ADMIN__/layui/layui.js"></script>
+    <script>
+    //JavaScript代码区域
+    layui.use(['element','layer','form','jquery'], function() {
+        var element = layui.element;
+        var layer = layui.layer;
+        var form = layui.form;
+        var $ = layui.jquery;
+    });
+    </script>
+</body>
+
+</html>

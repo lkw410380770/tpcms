@@ -1,0 +1,15 @@
+<!--顶部导航-->
+<header class="header">
+    <nav class="top-nav">
+        <a href="javascript:;"><img class="logo" src="{$skin}/images/footer-logo.png" alt=""></a>
+        <ul>
+            <li class="active"><a href="index.html">首页 </a></li>
+            {volist name="cateRes" id="v"}
+            <li><a href="{$v.url}">{$v['cate_name']}</a></li>
+            {/volist}
+            <li><a href="{:url('Reg/add')}">注册</a></li>
+        </ul>
+    </nav>
+
+</header>
+<!--顶部导航end-->
