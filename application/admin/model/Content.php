@@ -85,4 +85,22 @@ class Content extends Model
             ->find();
         return $data;
     }
+
+    public function getArticle($title)
+    {
+        if (empty($title)) {
+            $data = db('article')->alias('a')
+                ->field('a.*,b.cate_name')
+                ->join('tpcms_cate b', 'a.cate_id=b.id', 'left')
+                ->paginate(10);
+            return $data;
+        } else {
+            $data = db('article')->alias('a')
+                ->field('a.*,b.cate_name')
+                ->join('tpcms_cate b', 'a.cate_id=b.id', 'left')
+                ->where('a.title', 'like','%'. $title.'%')
+                ->paginate(10);
+            return $data;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_cate\lst.html";i:1534655837;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534574863;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_cate\lst.html";i:1534655837;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534822577;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -57,9 +57,10 @@
                     <dd><a href="javascript:;">超链接</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item <?php if($con == 'Cate'): ?>layui-nav-itemed<?php endif; ?>">
+            <li class="layui-nav-item <?php if($con == 'GoodsBrand' or $con == 'GoodsCate'): ?>layui-nav-itemed<?php endif; ?>">
                 <a href="javascript:;">商品管理</a>
                 <dl class="layui-nav-child">
+                    <dd><a href="<?php echo url('goodsBrand/lst'); ?>">品牌管理</a></dd>
                     <dd><a href="<?php echo url('GoodsCate/lst'); ?>">商品分类管理</a></dd>
                     <dd><a href="<?php echo url('Content/lst'); ?>">商品列表</a></dd>
                 </dl>

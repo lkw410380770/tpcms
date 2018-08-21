@@ -13,7 +13,7 @@
         <div class="layui-body" style="position: static;">
             <!-- 内容主体区域 -->
             <div style="padding: 15px;">
-                <form class="layui-form" action="" method="post">
+                <form class="layui-form" action="{:url('save')}" method="post">
                     <div class="layui-form-item">
                         <label class="layui-form-label">品牌名称</label>
                         <div class="layui-input-block">
@@ -32,11 +32,11 @@
                         </label>
                         <div class="layui-input-block">
                             <div class="layui-upload">
-                                <input type="hidden" value="" name="logo" class="logo">
-                                <button type="button" class="layui-btn choose-img" data-url="{:url('goodsBrand/upImg')}" id="test1">选择图片</button>
+                                <input type="hidden" value="" name="logo" class="imgurl">
+                                <button type="button" class="layui-btn choose-img"  data-url="{:url('goodsBrand/upImg')}" id="test1">选择图片</button>
                                 <button type="button" class="layui-btn uploadImg" id="uploadLogo">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" width="180" src="" id="demo1">
+                                    <img class="layui-upload-img" width="180" height="100" src="" id="demo1">
                                     <p id="demoText"></p>
                                 </div>
                             </div>
@@ -52,12 +52,16 @@
             </div>
         </div>
     </div>
-    <script src="__ADMIN__/js/jquery1.9.js"></script>
     <script src="__ADMIN__/layui/layui.js"></script>
+    <script src="__ADMIN__/js/jquery1.9.js"></script>
     <script src="__ADMIN__/js/common.js"></script>
     <script>
-    //JavaScript代码区域
-
+        UPLOADIMG = {
+            url:$('.choose-img').attr('data-url')
+        }
+    </script>
+    <script src="__ADMIN__/js/public-uploadImg.js"></script>
+    <script>
 
     </script>
 </body>

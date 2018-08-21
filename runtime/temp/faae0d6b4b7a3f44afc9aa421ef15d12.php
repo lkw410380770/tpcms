@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\content\edit.html";i:1534467966;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534467966;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\content\edit.html";i:1534494465;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534832686;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -52,8 +52,16 @@
                 <a href="javascript:;">网站管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="<?php echo url('Cate/index'); ?>">栏目管理</a></dd>
-                    <dd><a href="<?php echo url('Content/lst'); ?>">文章管理</a></dd>
+                    <dd><a href="<?php echo url('Content/index'); ?>">文章管理</a></dd>
                     <dd><a href="javascript:;">超链接</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item <?php if($con == 'GoodsBrand' or $con == 'GoodsCate'): ?>layui-nav-itemed<?php endif; ?>">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="<?php echo url('goodsBrand/lst'); ?>">品牌管理</a></dd>
+                    <dd><a href="<?php echo url('GoodsCate/lst'); ?>">商品分类管理</a></dd>
+                    <dd><a href="<?php echo url('Content/lst'); ?>">商品列表</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item <?php if($con == 'Model'): ?>layui-nav-itemed<?php endif; ?>">
@@ -109,7 +117,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">关键词</label>
                         <div class="layui-input-block">
-                            <input type="text" required value="<?php echo $data['keywords']; ?>" name="keywords" lay-verify="required" value="" placeholder="关键词" autocomplete="off" class="layui-input">
+                            <input type="text" value="<?php echo $data['keywords']; ?>" name="keywords" value="" placeholder="关键词" autocomplete="off" class="layui-input">
                            
                         </div>
                     </div>
@@ -122,13 +130,13 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">作者</label>
                         <div class="layui-input-block">
-                            <input type="text" required name="author" value="<?php echo $data['author']; ?>" lay-verify="required" value="" placeholder="作者" autocomplete="off" class="layui-input">
+                            <input type="text" name="author" value="<?php echo $data['author']; ?>" value="" placeholder="作者" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">来源</label>
                         <div class="layui-input-block">
-                            <input type="text" required name="source" value="<?php echo $data['source']; ?>" lay-verify="required" value="" placeholder="来源" autocomplete="off" class="layui-input">
+                            <input type="text" name="source" value="<?php echo $data['source']; ?>" value="" placeholder="来源" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -184,7 +192,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label"><?php echo $v['field_cname']; ?></label>
                                     <div class="layui-input-block">
-                                        <select name="<?php echo $v['field_ename']; ?>" lay-verify="required">
+                                        <select name="<?php echo $v['field_ename']; ?>">
                                             <option value="">请选择</option>
                                             <?php if(is_array($values) || $values instanceof \think\Collection || $values instanceof \think\Paginator): $i = 0; $__LIST__ = $values;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($i % 2 );++$i;?>
                                             <option value="<?php echo $v1; ?>" <?php if($v1 == $data[$v['field_ename']]): ?>selected<?php endif; ?>><?php echo $v1; ?></option>

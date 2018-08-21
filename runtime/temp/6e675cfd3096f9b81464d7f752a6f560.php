@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_brand\lst.html";i:1534776633;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534769415;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_brand\lst.html";i:1534829950;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\head.html";i:1534472536;s:73:"D:\phpStudy\PHPTutorial\WWW\tpcms\application\admin\view\common\left.html";i:1534822577;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +58,7 @@
                     <dd><a href="javascript:;">超链接</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item <?php if($con == 'Cate'): ?>layui-nav-itemed<?php endif; ?>">
+            <li class="layui-nav-item <?php if($con == 'GoodsBrand' or $con == 'GoodsCate'): ?>layui-nav-itemed<?php endif; ?>">
                 <a href="javascript:;">商品管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="<?php echo url('goodsBrand/lst'); ?>">品牌管理</a></dd>
@@ -115,7 +115,7 @@
                         <td><a href="<?php echo $v['url']; ?>"><?php echo $v['url']; ?></a></td>
                         <td></td>
                         <td>
-                            <button class="layui-btn layui-btn-danger  layui-btn-sm" onclick="formAler_s('添加品牌','<?php echo url('goodsBrand/add'); ?>')">
+                            <button class="layui-btn layui-btn-danger  layui-btn-sm" onclick="formAler_s('修改品牌','<?php echo url('goodsBrand/edit',['id'=>$v['id']]); ?>')">
                                 <i class="layui-icon">&#xe642;</i>
                             </button>
                             <button class="layui-btn layui-btn-primary layui-btn-sm btn-dele" data-href="<?php echo url('dele',['id'=>$v['id']]); ?>">

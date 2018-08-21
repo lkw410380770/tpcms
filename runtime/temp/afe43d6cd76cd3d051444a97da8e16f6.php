@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:87:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_brand\add.html";i:1534830795;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"D:\phpStudy\PHPTutorial\WWW\tpcms\public/../application/admin\view\goods_brand\edit.html";i:1534830760;}*/ ?>
 <!DOCTYPE html>
 <html>
 
@@ -15,16 +15,17 @@
             <!-- 内容主体区域 -->
             <div style="padding: 15px;">
                 <form class="layui-form" action="<?php echo url('save'); ?>" method="post">
+                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                     <div class="layui-form-item">
                         <label class="layui-form-label">品牌名称</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            <input type="text" name="name" value="<?php echo $data['name']; ?>" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">地址</label>
                         <div class="layui-input-block">
-                            <input type="text" name="url" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            <input type="text" name="url" required value="<?php echo $data['url']; ?>" lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -33,11 +34,11 @@
                         </label>
                         <div class="layui-input-block">
                             <div class="layui-upload">
-                                <input type="hidden" value="" name="logo" class="imgurl">
+                                <input type="hidden" value="<?php echo $data['logo']; ?>" name="logo" class="imgurl">
                                 <button type="button" class="layui-btn choose-img"  data-url="<?php echo url('goodsBrand/upImg'); ?>" id="test1">选择图片</button>
                                 <button type="button" class="layui-btn uploadImg" id="uploadLogo">上传图片</button>
                                 <div class="layui-upload-list">
-                                    <img class="layui-upload-img" width="180" height="100" src="" id="demo1">
+                                    <img class="layui-upload-img" src="/public/<?php echo $data['logo']; ?>" width="130" src="" id="demo1">
                                     <p id="demoText"></p>
                                 </div>
                             </div>

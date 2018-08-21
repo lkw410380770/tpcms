@@ -1,13 +1,12 @@
 <?php
 
 namespace app\admin\controller;
-
 class Cate extends Common
 {
     public function index()
     {
-        $_cateRes = db('cate')->alias('a')->field('a.*,b.model_name')->join('tpcms_model b', 'a.model_id = b.id')->order('sort desc')->select();
-        $data = model('cate')->catetree($_cateRes);
+        $_cateRes = db('Cate')->alias('a')->field('a.*,b.model_name')->join('tpcms_model b', 'a.model_id = b.id')->order('sort desc')->select();
+        $data = model('Cate')->catetree($_cateRes);
         $this->assign('arr', $data);
         return view();
     }
